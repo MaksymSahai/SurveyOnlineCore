@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <ProjectReference Include="..\SurveyOnlineCore.Data\SurveyOnlineCore.Data.csproj" />
   </ItemGroup>
 
 </Project>
