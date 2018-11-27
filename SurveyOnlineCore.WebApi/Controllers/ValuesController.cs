@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SurveyOnlineCore.WebApi.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -19,10 +19,18 @@ namespace SurveyOnlineCore.WebApi.Controllers
         // GET api/values/5
         [AllowAnonymous]
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<string> Get(Guid id)
         {
             return "value";
         }
+
+        //[AllowAnonymous]
+        //[HttpGet("({id})")]
+        //public ActionResult Get(string customerId)
+        //{
+        //    var cust = customerId;
+        //    return StatusCode(201);
+        //}
 
         // POST api/values
         [HttpPost]

@@ -35,6 +35,7 @@ namespace SurveyOnlineCore.WebApi
             services.AddDbContext<SurveyOnlineContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<ISurveyRepository, SurveyRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -45,7 +46,6 @@ namespace SurveyOnlineCore.WebApi
                         ValidateAudience = false
                     };
                 });
-            //services.AddTransient<ISurveyRepository, SurveyRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
