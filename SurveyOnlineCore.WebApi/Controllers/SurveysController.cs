@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SurveyOnlineCore.Data.Entities;
 using SurveyOnlineCore.Data.Interfaces;
+using SurveyOnlineCore.Model.Mappers;
 using SurveyOnlineCore.Model.Models;
 
 namespace SurveyOnlineCore.WebApi.Controllers
@@ -19,6 +21,23 @@ namespace SurveyOnlineCore.WebApi.Controllers
         public SurveysController(ISurveyRepository surveyRepository)
         {
             _surveyRepository = surveyRepository;
+        }
+
+        [HttpGet("{customerId}/survey/{surveyId}")]
+        public SurveyOut GetSyrvey(Guid customerId, Guid surveyId)
+        {
+            var survey = _surveyRepository.GetSurveyById(customerId, surveyId);
+            var syrveyOut = new SurveyOut
+            {
+                SurveyName = survey.SurveyName,
+                SurveyDescription = survey.SurveyDescription,
+                SurveyStatus = survey.SurveyStatus,
+                SurveysId = survey.SurveysId,
+                SurveyUrl = survey.SurveyUrl,
+                Questions = SurveyMapper.MapQuestion(survey.Questions)
+                
+            };
+            return syrveyOut;
         }
 
         [AllowAnonymous]

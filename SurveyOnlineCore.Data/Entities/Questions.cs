@@ -15,7 +15,6 @@ namespace SurveyOnlineCore.Data.Entities
         public string SelectedAnswer { get; set; }
         public Guid QuestionTypeId { get; set; }
         public Guid SurveysId { get; set; }
-
         public QuestionTypes QuestionType { get; set; }
         public Surveys Surveys { get; set; }
         public ICollection<AnswerVariants> AnswerVariants { get; set; }

@@ -9,7 +9,7 @@ namespace SurveyOnlineCore.Data.Interfaces
     public interface ISurveyRepository
     {
         IEnumerable<Surveys> GetSurveysByUserId(Guid custonmerId);
-        Task<Surveys> GetSurveyById(Guid custonmerId, Guid surveyId);
+        Surveys GetSurveyById(Guid custonmerId, Guid surveyId);
         Task<Surveys> GetSurveysByUrl(Guid custonmerId, string surveyUrl);
     }
 }

@@ -17,9 +17,9 @@ namespace SurveyOnlineCore.Data.Repositories
         {
             _surveyOnlineContext = surveyOnlineContext;
         }
-        public async Task<Surveys> GetSurveyById(Guid custonmerId, Guid surveyId)
+        public  Surveys GetSurveyById(Guid custonmerId, Guid surveyId)
         {
-            throw new NotImplementedException();
+            return _surveyOnlineContext.Surveys.Where(s => s.SurveysId == surveyId).Include(s => s.Questions).Include(s => s.Questions.Select(q => q.AnswerVariants)).FirstOrDefault();
         }
 
         public async Task<Surveys> GetSurveysByUrl(Guid customerId, string surveyUrl)
