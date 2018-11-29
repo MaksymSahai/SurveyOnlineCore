@@ -10,6 +10,7 @@ namespace SurveyOnlineCore.Data.Interfaces
     {
         IEnumerable<Surveys> GetSurveysByUserId(Guid custonmerId);
         Surveys GetSurveyById(Guid custonmerId, Guid surveyId);
-        Task<Surveys> GetSurveysByUrl(Guid custonmerId, string surveyUrl);
+        bool IsUrlUnique(Guid custonmerId, string surveyUrl);
+        void CreateSurvey(Surveys surveys);
     }
 }

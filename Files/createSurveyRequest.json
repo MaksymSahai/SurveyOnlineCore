@@ -1,0 +1,61 @@
+{
+    "CustomerId" : "CCA0CDFF-3430-4271-8063-E30C16FAE4E2",
+    "SurveyName": "Post Survey Name 1",
+    "SurveyDescription": "Post Survey Description 1",
+    "SurveyStatus": true,
+    "SurveyUrl": "post-survey-url-1",
+    "Questions": [
+        {
+            "QuestionName": "Post Test Question 4",
+            "SelectedAnswer": "test3",
+            "QuestionTypeId": "b4d59c13-c2bd-4654-a8a3-6e5cc00fb3c5",
+            "AnswerVariants": [
+            	{
+            		"AnswerVariantName" : "Post answer 1 q 4"
+            	},
+            	{
+            		"AnswerVariantName" : "Post answer 1 q 4"
+            	}
+            	]
+        },
+        {
+            "QuestionName": "Post Test Question 3",
+            "SelectedAnswer": "tes2",
+            "QuestionTypeId": "b4d59c13-c2bd-4654-a8a3-6e5cc00fb3c5",
+            "AnswerVariants": [
+            	{
+            		"AnswerVariantName" : "Post answer 1 q 3"
+            	},
+            	{
+            		"AnswerVariantName" : "Post answer 1 q 3"
+            	}
+            	]
+        },
+        {
+            "QuestionName": "Post Test Question 2",
+            "SelectedAnswer": "test1",
+            "QuestionTypeId": "ea888a7d-1fde-4fa7-bdac-7f240ca762f6",
+            "AnswerVariants": [
+            	{
+            		"AnswerVariantName" : "Post answer 1 q 2"
+            	},
+            	{
+            		"AnswerVariantName" : "Post answer 2 q 2"
+            	}
+            	]
+        },
+        {
+            "QuestionName": "Post Test Question 1",
+            "SelectedAnswer": "test",
+            "QuestionTypeId": "ea888a7d-1fde-4fa7-bdac-7f240ca762f6",
+            "AnswerVariants": [
+            	{
+            		"AnswerVariantName" : "Post answer 1 q 1"
+            	},
+            	{
+            		"AnswerVariantName" : "Post answer 1 q 1"
+            	}
+            	]
+        }
+    ]
+}

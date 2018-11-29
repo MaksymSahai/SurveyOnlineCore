@@ -1,52 +1,65 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace SurveyOnlineCore.Model.Models
 {
     [JsonObject]
-    public class SurveyOut
+    public class CreateSurvey
     {
-        [JsonProperty("SurveysId")]
-        public Guid SurveysId { get; set; }
+        [Required]
+        [JsonProperty("CustomerId")]
+        public string CustomerId { get; set; }
 
+        [Required]
+        [MaxLength(250)]
         [JsonProperty("SurveyName")]
         public string SurveyName { get; set; }
 
+        [Required]
+        [MaxLength(500)]
         [JsonProperty("SurveyDescription")]
         public string SurveyDescription { get; set; }
 
         [JsonProperty("SurveyStatus")]
         public bool SurveyStatus { get; set; }
 
+        [Required]
+        [MaxLength(100)]
         [JsonProperty("SurveyUrl")]
         public string SurveyUrl { get; set; }
 
-        public ICollection<QuestionOut> Questions { get; set; }
+        [JsonProperty("Questions")]
+        public IList<QuestionOut> Questions { get; set; }
     }
 
     [JsonObject]
-    public class QuestionOut
+    public class CreateQuestion
     {
-        [JsonProperty("QuestionId")]
-        public Guid QuestionId { get; set; }
-
+        [Required]
+        [MaxLength(250)]
         [JsonProperty("QuestionName")]
         public string QuestionName { get; set; }
 
+        [Required]
+        [MaxLength(250)]
         [JsonProperty("SelectedAnswer")]
         public string SelectedAnswer { get; set; }
 
         [JsonProperty("QuestionTypeId")]
         public Guid QuestionTypeId { get; set; }
 
-        public ICollection<AnswerOut> AnswerVariants { get; set; }
+        [JsonProperty("AnswerVariants")]
+        public IList<AnswerOut> AnswerVariants { get; set; }
     }
 
     [JsonObject]
-    public class AnswerOut
+    public class CreateAnswer
     {
+        [Required]
+        [MaxLength(250)]
         [JsonProperty("AnswerVariantName")]
         public string AnswerVariantName { get; set; }
     }

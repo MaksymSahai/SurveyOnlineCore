@@ -75,5 +75,23 @@ namespace SurveyOnlineCore.WebApi.Controllers
                 return StatusCode(500);
             }
         }
+
+        [HttpPost]
+        public ActionResult CreateSurvey([FromBody]CreateSurvey createSurvey)
+        {
+            //if (!ModelState.IsValid)
+            //    return BadRequest();
+
+            try
+            {
+                var survey = SurveyMapper.MapSurvey(createSurvey);
+                _surveyRepository.CreateSurvey(survey);
+                return StatusCode(201);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
+        }
     }
 }
