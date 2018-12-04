@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -27,20 +28,10 @@ namespace SurveyOnlineCore.WebApi.Controllers
         public SurveyOut GetSyrvey(Guid customerId, Guid surveyId)
         {
             var survey = _surveyRepository.GetSurveyById(customerId, surveyId);
-            var syrveyOut = new SurveyOut
-            {
-                SurveyName = survey.SurveyName,
-                SurveyDescription = survey.SurveyDescription,
-                SurveyStatus = survey.SurveyStatus,
-                SurveysId = survey.SurveysId,
-                SurveyUrl = survey.SurveyUrl,
-                Questions = SurveyMapper.MapQuestion(survey.Questions)
-                
-            };
+            var syrveyOut = SurveyMapper.MapSurvey(survey);
             return syrveyOut;
         }
 
-        [AllowAnonymous]
         [HttpGet("{customerId}/list")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -50,6 +41,15 @@ namespace SurveyOnlineCore.WebApi.Controllers
         {
             try
             {
+                var identity = User.Identity as ClaimsIdentity;
+                var email = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (identity == null)
+                    return BadRequest();
+
+                var cId = identity.Claims;
+
+
+
                 var surveys = _surveyRepository.GetSurveysByUserId(customerId);
                 if (!surveys.Any() || surveys == null)
                     return NotFound();

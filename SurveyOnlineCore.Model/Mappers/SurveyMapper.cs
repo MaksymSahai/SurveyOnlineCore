@@ -8,9 +8,23 @@ namespace SurveyOnlineCore.Model.Mappers
 {
     public static class SurveyMapper
     {
+        public static SurveyOut MapSurvey(Surveys surveys)
+        {
+            var surveyOut = new SurveyOut
+            {
+                SurveyName = surveys.SurveyName,
+                SurveyDescription = surveys.SurveyDescription,
+                SurveyStatus = surveys.SurveyStatus,
+                SurveysId = surveys.SurveysId,
+                SurveyUrl = surveys.SurveyUrl,
+                Questions = MapQuestion(surveys.Questions)
+            };
+            return surveyOut;
+        }
+
         public static ICollection<QuestionOut> MapQuestion(ICollection<Questions> questions)
         {
-            var questionsOutoList = new List<QuestionOut>();
+            var questionsOutList = new List<QuestionOut>();
             foreach (var question in questions)
             {
                 var questionOut = new QuestionOut
@@ -18,11 +32,27 @@ namespace SurveyOnlineCore.Model.Mappers
                     QuestionId = question.QuestionId,
                     QuestionName = question.QuestionName,
                     QuestionTypeId = question.QuestionTypeId,
-                    SelectedAnswer = question.SelectedAnswer
+                    SelectedAnswer = question.SelectedAnswer,
+                    AnswerVariants = MapAnswerVariants(question.AnswerVariants)
                 };
-                questionsOutoList.Add(questionOut);
+                questionsOutList.Add(questionOut);
             }
-            return questionsOutoList;
+            return questionsOutList;
+        }
+
+        private static ICollection<AnswerOut> MapAnswerVariants(ICollection<AnswerVariants> answerVariants)
+        {
+            var answerVariantsOutList = new List<AnswerOut>();
+            foreach (var answerVariant in answerVariants)
+            {
+                var answerVariantsOut = new AnswerOut
+                {
+                    AnswerVariantId = answerVariant.AnswerVariantId,
+                    AnswerVariantName = answerVariant.AnswerVariantName
+                };
+                answerVariantsOutList.Add(answerVariantsOut);
+            }
+            return answerVariantsOutList;
         }
 
         public static Surveys MapSurvey(CreateSurvey createSurvey)

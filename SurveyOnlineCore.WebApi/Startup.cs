@@ -37,7 +37,8 @@ namespace SurveyOnlineCore.WebApi
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<ISurveyRepository, SurveyRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options => {
+                .AddJwtBearer(options =>
+                {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
@@ -46,6 +47,7 @@ namespace SurveyOnlineCore.WebApi
                         ValidateAudience = false
                     };
                 });
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

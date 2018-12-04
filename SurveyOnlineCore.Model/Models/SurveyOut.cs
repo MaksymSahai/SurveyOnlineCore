@@ -47,6 +47,9 @@ namespace SurveyOnlineCore.Model.Models
     [JsonObject]
     public class AnswerOut
     {
+        [JsonProperty("AnswerVariantId")]
+        public Guid AnswerVariantId { get; set; }
+
         [JsonProperty("AnswerVariantName")]
         public string AnswerVariantName { get; set; }
     }
