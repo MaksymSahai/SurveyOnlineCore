@@ -26,7 +26,8 @@ namespace SurveyOnlineCore.Data.Repositories
         /// <returns>Survey by id</returns>
         public  Surveys GetSurveyById(Guid customerId, Guid surveyId)
         {
-            return _surveyOnlineContext.Surveys.Where(s => s.SurveysId == surveyId).Include(s => s.Questions).FirstOrDefault();
+            return _surveyOnlineContext.Surveys.Where(s => s.SurveysId == surveyId)
+                .Include(s => s.Questions).ThenInclude(s => s.AnswerVariants).FirstOrDefault();
         }
 
         /// <summary>
@@ -91,6 +92,21 @@ namespace SurveyOnlineCore.Data.Repositories
             {
                 throw;
             }
+        }
+
+        /// <summary>
+        /// Return customer survey with statistic by id
+        /// </summary>
+        /// <param name="customerId">Customer Id</param>
+        /// <param name="surveyId">Survey Id </param>
+        /// <returns>Survey by id</returns>
+        public Surveys GetSurveyStatisticById(Guid custonmerId, Guid surveyId)
+        {
+            return _surveyOnlineContext.Surveys.Where(s => s.SurveysId == surveyId)
+                .Include(s => s.Questions)
+                .ThenInclude(s => s.AnswerVariants)
+                .ThenInclude(s => s.Questionnaires)
+                .FirstOrDefault();
         }
     }
 }

@@ -32,7 +32,6 @@ namespace SurveyOnlineCore.Model.Mappers
                     QuestionId = question.QuestionId,
                     QuestionName = question.QuestionName,
                     QuestionTypeId = question.QuestionTypeId,
-                    SelectedAnswer = question.SelectedAnswer,
                     AnswerVariants = MapAnswerVariants(question.AnswerVariants)
                 };
                 questionsOutList.Add(questionOut);
@@ -65,7 +64,7 @@ namespace SurveyOnlineCore.Model.Mappers
                 SurveyDescription = createSurvey.SurveyDescription,
                 SurveyStatus = true,
                 SurveyUrl = createSurvey.SurveyUrl,
-                CustomerId = new Guid ( createSurvey.CustomerId),
+                CustomerId = new Guid(createSurvey.CustomerId),
                 Questions = MapQuestion(createSurvey.Questions, surveyGuid)
 
             };
@@ -87,7 +86,6 @@ namespace SurveyOnlineCore.Model.Mappers
                         QuestionName = questionToCreate.QuestionName,
                         QuestionTypeId = questionToCreate.QuestionTypeId,
                         SurveysId = surveyGuid,
-                        SelectedAnswer = questionToCreate.SelectedAnswer,
                         AnswerVariants = MapAnswerVariants(questionToCreate.AnswerVariants, questionGuid)
                     };
 

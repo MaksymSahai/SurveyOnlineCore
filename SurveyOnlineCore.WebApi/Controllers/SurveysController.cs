@@ -13,23 +13,47 @@ using SurveyOnlineCore.Model.Models;
 
 namespace SurveyOnlineCore.WebApi.Controllers
 {
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SurveysController : ControllerBase
     {
         private readonly ISurveyRepository _surveyRepository;
+        private readonly IHttpContextAccessor _context;
 
-        public SurveysController(ISurveyRepository surveyRepository)
+        public SurveysController(ISurveyRepository surveyRepository, IHttpContextAccessor context)
         {
             _surveyRepository = surveyRepository;
+            _context = context;
         }
 
         [HttpGet("{customerId}/survey/{surveyId}")]
-        public SurveyOut GetSyrvey(Guid customerId, Guid surveyId)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(500)]
+        public ActionResult<SurveyOut> GetSyrvey(Guid customerId, Guid surveyId)
         {
-            var survey = _surveyRepository.GetSurveyById(customerId, surveyId);
-            var syrveyOut = SurveyMapper.MapSurvey(survey);
-            return syrveyOut;
+            try
+            {
+                surveyId = new Guid(surveyId.ToString().Trim());
+
+                if (surveyId == null || surveyId.ToString() == string.Empty)
+                    return BadRequest();
+
+                var survey = _surveyRepository.GetSurveyById(customerId, surveyId);
+                var surveyStat = _surveyRepository.GetSurveyStatisticById(customerId, surveyId);
+
+                if (survey == null)
+                    return NotFound();
+
+                var syrveyOut = SurveyMapper.MapSurvey(survey);
+                return syrveyOut;
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpGet("{customerId}/list")]
@@ -41,14 +65,9 @@ namespace SurveyOnlineCore.WebApi.Controllers
         {
             try
             {
-                var identity = User.Identity as ClaimsIdentity;
-                var email = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                if (identity == null)
+                Guid customerId2 = new Guid(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                if (customerId2 == null)
                     return BadRequest();
-
-                var cId = identity.Claims;
-
-
 
                 var surveys = _surveyRepository.GetSurveysByUserId(customerId);
                 if (!surveys.Any() || surveys == null)
@@ -77,6 +96,10 @@ namespace SurveyOnlineCore.WebApi.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(500)]
         public ActionResult CreateSurvey([FromBody]CreateSurvey createSurvey)
         {
             //if (!ModelState.IsValid)

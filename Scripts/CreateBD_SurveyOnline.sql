@@ -38,7 +38,6 @@ CREATE TABLE Questions
 (
 	QuestionId uniqueidentifier PRIMARY KEY NOT NULL,
 	QuestionName nvarchar(255) NOT NULL,
-	SelectedAnswer nvarchar(255) NOT NULL,
 	QuestionTypeId uniqueidentifier FOREIGN KEY REFERENCES QuestionTypes(QuestionTypeId)  NOT NULL,
 	SurveysId uniqueidentifier FOREIGN KEY REFERENCES Surveys(SurveysId)  NOT NULL,
 );
@@ -49,5 +48,14 @@ CREATE TABLE AnswerVariants
 	AnswerVariantId uniqueidentifier PRIMARY KEY NOT NULL,
 	AnswerVariantName nvarchar(255) NOT NULL,
 	QuestionId uniqueidentifier FOREIGN KEY REFERENCES Questions(QuestionId)  NOT NULL,
+);
+GO
+
+CREATE TABLE Questionnaires
+(
+	QuestionnairesId uniqueidentifier PRIMARY KEY NOT NULL,
+	SurveysId uniqueidentifier FOREIGN KEY REFERENCES Surveys(SurveysId) NOT NULL,
+	QuestionId uniqueidentifier FOREIGN KEY REFERENCES Questions(QuestionId) NOT NULL,
+	AnswerVariantId uniqueidentifier FOREIGN KEY REFERENCES AnswerVariants(AnswerVariantId)  NOT NULL,
 );
 GO
