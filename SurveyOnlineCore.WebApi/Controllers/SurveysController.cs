@@ -42,12 +42,39 @@ namespace SurveyOnlineCore.WebApi.Controllers
                     return BadRequest();
 
                 var survey = _surveyRepository.GetSurveyById(customerId, surveyId);
-                var surveyStat = _surveyRepository.GetSurveyStatisticById(customerId, surveyId);
 
                 if (survey == null)
                     return NotFound();
 
                 var syrveyOut = SurveyMapper.MapSurvey(survey);
+                return syrveyOut;
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
+        }
+
+        [HttpGet("{customerId}/survey/{surveyId}/stat")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(500)]
+        public ActionResult<SurveyStatOut> GetSyrveyStatistic(Guid customerId, Guid surveyId)
+        {
+            try
+            {
+                surveyId = new Guid(surveyId.ToString().Trim());
+
+                if (surveyId == null || surveyId.ToString() == string.Empty)
+                    return BadRequest();
+
+                var survey = _surveyRepository.GetSurveyStatisticById(customerId, surveyId);
+
+                if (survey == null)
+                    return NotFound();
+
+                var syrveyOut = SurveyMapper.MapSurveyStat(survey);
                 return syrveyOut;
             }
             catch (Exception e)

@@ -53,6 +53,55 @@ namespace SurveyOnlineCore.Model.Mappers
             }
             return answerVariantsOutList;
         }
+        #region Map Stat
+        public static SurveyStatOut MapSurveyStat(Surveys surveys)
+        {
+            var surveyOut = new SurveyStatOut
+            {
+                SurveyName = surveys.SurveyName,
+                SurveyDescription = surveys.SurveyDescription,
+                SurveyStatus = surveys.SurveyStatus,
+                SurveysId = surveys.SurveysId,
+                SurveyUrl = surveys.SurveyUrl,
+                QuestionnairesCount = surveys.Questionnaires.Count,
+                Questions = MapQuestionStat(surveys.Questions)
+            };
+            return surveyOut;
+        }
+
+        public static ICollection<QuestionStatOut> MapQuestionStat(ICollection<Questions> questions)
+        {
+            var questionsOutList = new List<QuestionStatOut>();
+            foreach (var question in questions)
+            {
+                var questionOut = new QuestionStatOut
+                {
+                    QuestionId = question.QuestionId,
+                    QuestionName = question.QuestionName,
+                    QuestionTypeId = question.QuestionTypeId,
+                    AnswerVariants = MapAnswerVariantsStat(question.AnswerVariants)
+                };
+                questionsOutList.Add(questionOut);
+            }
+            return questionsOutList;
+        }
+
+        private static ICollection<AnswerStatOut> MapAnswerVariantsStat(ICollection<AnswerVariants> answerVariants)
+        {
+            var answerVariantsOutList = new List<AnswerStatOut>();
+            foreach (var answerVariant in answerVariants)
+            {
+                var answerVariantsOut = new AnswerStatOut
+                {
+                    AnswerVariantId = answerVariant.AnswerVariantId,
+                    AnswerVariantName = answerVariant.AnswerVariantName,
+                    QuestionnairesCount = answerVariant.Questionnaires.Count
+                };
+                answerVariantsOutList.Add(answerVariantsOut);
+            }
+            return answerVariantsOutList;
+        }
+#endregion
 
         public static Surveys MapSurvey(CreateSurvey createSurvey)
         {

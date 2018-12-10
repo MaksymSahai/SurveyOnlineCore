@@ -6,7 +6,7 @@ using System.Text;
 namespace SurveyOnlineCore.Model.Models
 {
     [JsonObject]
-    public class SurveyOut
+    public class SurveyStatOut
     {
         [JsonProperty("SurveysId")]
         public Guid SurveysId { get; set; }
@@ -23,11 +23,14 @@ namespace SurveyOnlineCore.Model.Models
         [JsonProperty("SurveyUrl")]
         public string SurveyUrl { get; set; }
 
-        public ICollection<QuestionOut> Questions { get; set; }
+        [JsonProperty("QuestionnairesCount")]
+        public int QuestionnairesCount { get; set; }
+
+        public ICollection<QuestionStatOut> Questions { get; set; }
     }
 
     [JsonObject]
-    public class QuestionOut
+    public class QuestionStatOut
     {
         [JsonProperty("QuestionId")]
         public Guid QuestionId { get; set; }
@@ -38,16 +41,19 @@ namespace SurveyOnlineCore.Model.Models
         [JsonProperty("QuestionTypeId")]
         public Guid QuestionTypeId { get; set; }
 
-        public ICollection<AnswerOut> AnswerVariants { get; set; }
+        public ICollection<AnswerStatOut> AnswerVariants { get; set; }
     }
 
     [JsonObject]
-    public class AnswerOut
+    public class AnswerStatOut
     {
         [JsonProperty("AnswerVariantId")]
         public Guid AnswerVariantId { get; set; }
 
         [JsonProperty("AnswerVariantName")]
         public string AnswerVariantName { get; set; }
+
+        [JsonProperty("QuestionnairesCount")]
+        public int QuestionnairesCount { get; set; }
     }
 }
