@@ -108,5 +108,37 @@ namespace SurveyOnlineCore.Data.Repositories
                 .ThenInclude(s => s.Questionnaires)
                 .FirstOrDefault();
         }
+
+        /// <summary>
+        /// Create questionnaires of survey
+        /// </summary>
+        /// <param name="questionnaires">Survey questionnaires</param>
+        public void ConductSurvey(IEnumerable<Questionnaires> questionnaires)
+        {
+            try
+            {
+                using (var transaction = _surveyOnlineContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (var questionnairy in questionnaires)
+                        {
+                            _surveyOnlineContext.Add(questionnairy);
+                        }
+                        _surveyOnlineContext.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

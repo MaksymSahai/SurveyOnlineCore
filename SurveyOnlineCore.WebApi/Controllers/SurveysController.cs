@@ -143,5 +143,27 @@ namespace SurveyOnlineCore.WebApi.Controllers
                 return StatusCode(500);
             }
         }
+
+        [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(500)]
+        public ActionResult ConductSurvey([FromBody]ConductSurvey conductSurvey)
+        {
+            //if (!ModelState.IsValid)
+            //    return BadRequest();
+
+            try
+            {
+                var questionaries = SurveyMapper.MapQuestionnaires(conductSurvey);
+                _surveyRepository.ConductSurvey(questionaries);
+                return StatusCode(201);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace SurveyOnlineCore.Model.Mappers
 {
     public static class SurveyMapper
     {
+        #region Map survey to survey out
         public static SurveyOut MapSurvey(Surveys surveys)
         {
             var surveyOut = new SurveyOut
@@ -53,7 +54,8 @@ namespace SurveyOnlineCore.Model.Mappers
             }
             return answerVariantsOutList;
         }
-        #region Map Stat
+        #endregion
+        #region Map survey to survey Stat
         public static SurveyStatOut MapSurveyStat(Surveys surveys)
         {
             var surveyOut = new SurveyStatOut
@@ -101,8 +103,8 @@ namespace SurveyOnlineCore.Model.Mappers
             }
             return answerVariantsOutList;
         }
-#endregion
-
+        #endregion
+        #region Map create survey to survey
         public static Surveys MapSurvey(CreateSurvey createSurvey)
         {
             var surveyGuid = Guid.NewGuid();
@@ -171,6 +173,30 @@ namespace SurveyOnlineCore.Model.Mappers
             {
                 throw;
             }
+        }
+        #endregion
+
+        public static IEnumerable<Questionnaires> MapQuestionnaires(ConductSurvey conductSurvey)
+        {
+            var questionnaires = new List<Questionnaires>();
+
+            foreach (var question in conductSurvey.Questions)
+            {
+                foreach (var answer in question.AnswerVariants)
+                {
+                    var questionnairy = new Questionnaires
+                    {
+                        SurveysId = conductSurvey.SurveysId,
+                        QuestionId = question.QuestionId,
+                        AnswerVariantId = answer.AnswerVariantId,
+                        QuestionnairesId = Guid.NewGuid()
+                    };
+
+                    questionnaires.Add(questionnairy);
+                }
+            }
+
+            return questionnaires;
         }
     }
 }

@@ -13,5 +13,6 @@ namespace SurveyOnlineCore.Data.Interfaces
         Surveys GetSurveyStatisticById(Guid custonmerId, Guid surveyId);
         bool IsUrlUnique(Guid custonmerId, string surveyUrl);
         void CreateSurvey(Surveys surveys);
+        void ConductSurvey(IEnumerable<Questionnaires> questionnaires);
     }
 }
