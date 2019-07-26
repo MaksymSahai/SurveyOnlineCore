@@ -13,7 +13,7 @@ namespace SurveyOnlineCore.WebApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "value12", "value23" };
         }
 
         // GET api/values/5
@@ -21,7 +21,7 @@ namespace SurveyOnlineCore.WebApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(Guid id)
         {
-            return "value";
+            return $"value {id}";
         }
 
         //[AllowAnonymous]

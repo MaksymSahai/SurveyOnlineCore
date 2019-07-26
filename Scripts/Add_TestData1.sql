@@ -1,3 +1,4 @@
+use SO_DataBase
 Insert into SO_DataBase.dbo.Customers(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerSalt, CustomerAbilities)
 values ('cca0cdff-3430-4271-8063-e30c16fae4e2', 'Customer Name 1', 'customer@email.com', 'testpassword', 'testsalt', 'test abilities');
 go
@@ -12,11 +13,11 @@ values ('ea888a7d-1fde-4fa7-bdac-7f240ca762f6','Test type 1','Test type desc 1')
 ('b4d59c13-c2bd-4654-a8a3-6e5cc00fb3c5','Test type 2','Test type desc 2')
 go
 
-Insert into SO_DataBase.dbo.Questions(QuestionId, QuestionName, QuestionTypeId, SurveysId, SelectedAnswer)
-values('89e0dc1d-f943-49ca-9bdb-e83a3a5fbc56','Test Question 1','ea888a7d-1fde-4fa7-bdac-7f240ca762f6','82077383-9629-463b-8fb4-352a1fd24412','test'),
-('c5ea9c17-30dd-4192-bd08-df427fef88f3','Test Question 2','ea888a7d-1fde-4fa7-bdac-7f240ca762f6','82077383-9629-463b-8fb4-352a1fd24412','test1'),
-('0d2ba192-1fb2-4ff4-a3ad-60187d8e98f5','Test Question 3','b4d59c13-c2bd-4654-a8a3-6e5cc00fb3c5','82077383-9629-463b-8fb4-352a1fd24412','tes2'),
-('7dd3fdc9-2b6e-45f7-bc59-40dccaa8eb65','Test Question 4','b4d59c13-c2bd-4654-a8a3-6e5cc00fb3c5','82077383-9629-463b-8fb4-352a1fd24412','test3')
+Insert into SO_DataBase.dbo.Questions(QuestionId, QuestionName, QuestionTypeId, SurveysId)
+values('89e0dc1d-f943-49ca-9bdb-e83a3a5fbc56','Test Question 1','ea888a7d-1fde-4fa7-bdac-7f240ca762f6','82077383-9629-463b-8fb4-352a1fd24412'),
+('c5ea9c17-30dd-4192-bd08-df427fef88f3','Test Question 2','ea888a7d-1fde-4fa7-bdac-7f240ca762f6','82077383-9629-463b-8fb4-352a1fd24412'),
+('0d2ba192-1fb2-4ff4-a3ad-60187d8e98f5','Test Question 3','b4d59c13-c2bd-4654-a8a3-6e5cc00fb3c5','82077383-9629-463b-8fb4-352a1fd24412'),
+('7dd3fdc9-2b6e-45f7-bc59-40dccaa8eb65','Test Question 4','b4d59c13-c2bd-4654-a8a3-6e5cc00fb3c5','82077383-9629-463b-8fb4-352a1fd24412')
 go
 
 Insert into SO_DataBase.dbo.AnswerVariants(AnswerVariantId, AnswerVariantName, QuestionId)

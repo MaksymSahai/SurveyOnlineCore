@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using SurveyOnlineCore.Data.Entities;
+﻿using Microsoft.AspNetCore.Mvc;
 using SurveyOnlineCore.Data.Interfaces;
 using SurveyOnlineCore.Model.Mappers;
 using SurveyOnlineCore.Model.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 
 namespace SurveyOnlineCore.WebApi.Controllers
 {
@@ -19,12 +15,10 @@ namespace SurveyOnlineCore.WebApi.Controllers
     public class SurveysController : ControllerBase
     {
         private readonly ISurveyRepository _surveyRepository;
-        private readonly IHttpContextAccessor _context;
 
-        public SurveysController(ISurveyRepository surveyRepository, IHttpContextAccessor context)
+        public SurveysController(ISurveyRepository surveyRepository)
         {
             _surveyRepository = surveyRepository;
-            _context = context;
         }
 
         [HttpGet("{customerId}/survey/{surveyId}")]
@@ -38,7 +32,7 @@ namespace SurveyOnlineCore.WebApi.Controllers
             {
                 surveyId = new Guid(surveyId.ToString().Trim());
 
-                if (surveyId == null || surveyId.ToString() == string.Empty)
+                if (surveyId.ToString() == string.Empty)
                     return BadRequest();
 
                 var survey = _surveyRepository.GetSurveyById(customerId, surveyId);
@@ -49,7 +43,7 @@ namespace SurveyOnlineCore.WebApi.Controllers
                 var syrveyOut = SurveyMapper.MapSurvey(survey);
                 return syrveyOut;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
@@ -66,7 +60,7 @@ namespace SurveyOnlineCore.WebApi.Controllers
             {
                 surveyId = new Guid(surveyId.ToString().Trim());
 
-                if (surveyId == null || surveyId.ToString() == string.Empty)
+                if (surveyId.ToString() == string.Empty)
                     return BadRequest();
 
                 var survey = _surveyRepository.GetSurveyStatisticById(customerId, surveyId);
@@ -77,7 +71,7 @@ namespace SurveyOnlineCore.WebApi.Controllers
                 var syrveyOut = SurveyMapper.MapSurveyStat(survey);
                 return syrveyOut;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
@@ -96,8 +90,8 @@ namespace SurveyOnlineCore.WebApi.Controllers
                 if (customerId2 == null)
                     return BadRequest();
 
-                var surveys = _surveyRepository.GetSurveysByUserId(customerId);
-                if (!surveys.Any() || surveys == null)
+                var surveys = _surveyRepository.GetSurveysByUserId(customerId).ToList();
+                if (surveys == null || !surveys.Any())
                     return NotFound();
 
                 var syrveysOut = new List<SurveyLitsItemOut>();
@@ -116,7 +110,7 @@ namespace SurveyOnlineCore.WebApi.Controllers
                 }
                 return syrveysOut;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
@@ -138,7 +132,7 @@ namespace SurveyOnlineCore.WebApi.Controllers
                 _surveyRepository.CreateSurvey(survey);
                 return StatusCode(201);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
@@ -160,7 +154,7 @@ namespace SurveyOnlineCore.WebApi.Controllers
                 _surveyRepository.ConductSurvey(questionaries);
                 return StatusCode(201);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
