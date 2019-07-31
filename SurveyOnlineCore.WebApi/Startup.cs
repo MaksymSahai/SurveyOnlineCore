@@ -27,6 +27,7 @@ namespace SurveyOnlineCore.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SurveyOnlineContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IAuthRepository, AuthRepository>();
@@ -59,6 +60,9 @@ namespace SurveyOnlineCore.WebApi
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
+            app.UseCors(
+                options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+            );
             app.UseMvc();
         }
     }
