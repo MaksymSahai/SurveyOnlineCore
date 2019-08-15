@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ValueServiceComponent } from 'src/app/Api/valueService';
 import ValueData from 'src/app/Models/ValueModel';
+import { ValueServiceComponent } from 'src/app/Services/valueService';
 
 @Component({
   selector: 'app-value-list',

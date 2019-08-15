@@ -22,10 +22,10 @@ namespace SurveyOnlineCore.Data.Entities
         public string CustomerEmail { get; set; }
         [Required]
         [StringLength(255)]
-        public string CustomerSalt { get; set; }
+        public byte[] CustomerSalt { get; set; }
         [Required]
         [StringLength(255)]
-        public string CustomerPassword { get; set; }
+        public byte[] CustomerPassword { get; set; }
         [Required]
         public string CustomerAbilities { get; set; }
 

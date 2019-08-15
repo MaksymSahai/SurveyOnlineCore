@@ -53,3 +53,19 @@
 .dropdown:hover .dropdown-menu {
     visibility: visible;
 }
+.main-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.site-logo {
+    display: flex;
+    flex: none;
+    align-items: center;
+}
+.img-logo {
+    width: 171px;
+    margin: 5px;
+}

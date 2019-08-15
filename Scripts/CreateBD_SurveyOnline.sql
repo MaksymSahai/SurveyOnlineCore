@@ -8,8 +8,8 @@ CREATE TABLE Customers
 	CustomerId uniqueidentifier PRIMARY KEY NOT NULL,
 	CustomerName nvarchar(255) NOT NULL,
 	CustomerEmail nvarchar(255) NOT NULL,
-	CustomerSalt nvarchar(255) NOT NULL,
-	CustomerPassword nvarchar(255) NOT NULL,
+	CustomerSalt varbinary(MAX) NOT NULL,
+	CustomerPassword varbinary(MAX) NOT NULL,
 	CustomerAbilities nvarchar(max) NOT NULL,
 );
 GO

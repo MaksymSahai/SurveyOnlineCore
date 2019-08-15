@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using System.Collections;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace SurveyOnlineCore.Data.Helpers
 {
@@ -13,16 +16,18 @@ namespace SurveyOnlineCore.Data.Helpers
             }
         }
 
-        internal static bool VerifyPassword(string password, string customerPassword, string customerSalt)
+        internal static bool VerifyPassword(string password, byte[] customerPassword, byte[] customerSalt)
         {
-            var customerSaltByte = Encoding.UTF8.GetBytes(customerSalt);
-            using (var hmac = new System.Security.Cryptography.HMACSHA512(customerSaltByte))
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(customerSalt))
             {
-                var computedHash = Encoding.Default.GetString(hmac.ComputeHash(Encoding.UTF8.GetBytes(password)));
-                if (customerPassword.Equals(computedHash))
+                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+                if (!StructuralComparisons.StructuralEqualityComparer.Equals(customerPassword, computedHash))
                     return false;
                 return true;
             }
         }
+
+        [DllImport("msvcrt.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern int Memcmp(byte[] b1, byte[] b2, long count);
     }
 }

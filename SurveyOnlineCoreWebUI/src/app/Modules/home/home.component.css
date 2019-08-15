@@ -1,0 +1,27 @@
+.info-block {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.image-set {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
+    font-size: 18px;
+}
+.home-create, .home-collect, .home-analyze {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.image-set img {
+    margin-bottom: 20px;
+}
+.arrow-right {
+    width: 100px;
+    height: 10px;
+    background-image: url(src/assets/img/arrow_howItWorks_home_icon.png);
+    background-repeat: no-repeat;
+}

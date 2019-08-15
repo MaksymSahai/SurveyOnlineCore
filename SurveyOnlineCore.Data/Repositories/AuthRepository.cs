@@ -57,8 +57,8 @@ namespace SurveyOnlineCore.Data.Repositories
             byte[] passwordSalt;
             AuthHelpers.CreatePasswordHash(password, out passwordHash, out passwordSalt);
 
-            customer.CustomerPassword = Encoding.Default.GetString(passwordHash);
-            customer.CustomerSalt = Encoding.Default.GetString(passwordSalt);
+            customer.CustomerPassword = passwordHash;
+            customer.CustomerSalt = passwordSalt;
 
             using (var transaction = _surveyOnlineContext.Database.BeginTransaction())
             {

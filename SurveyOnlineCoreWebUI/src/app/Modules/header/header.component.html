@@ -7,11 +7,12 @@
                         </div>
                         <div>
                                 <ul class="top-menu">
-                                        <li class="top-nav-item"><a href="/Account/Login">Login</a></li>
+                                        <li class="top-nav-item" *ngIf="!currentUser"><a href="/login">Login</a></li>
+                                        <li class="top-nav-item" *ngIf="currentUser" (click)="logout()"><a href="">Logout</a></li>
                                         <li class="top-nav-item dropdown">
                                                 <a class="nav-itm dropdown-toggle" data-toggle="dropdown">
                                                     <i class="fa fa-user-circle" aria-hidden="true"></i>
-                                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                                    
                                                 </a>
                                                 <ul class="dropdown-menu dropdown-menu-header" role="menu">
                                                         <li><a>Welcome &nbsp<strong>Name</strong></a></li>
@@ -23,6 +24,13 @@
                                                 </ul>
                                         </li>
                                 </ul>
+                        </div>
+                </div>
+                <div class="main-header">
+                        <div class="site-logo">
+                            <a href="/">
+                                <img src="assets\img\logo.png" alt="logo" class="img-logo" />
+                            </a>
                         </div>
                 </div>
         </div>
