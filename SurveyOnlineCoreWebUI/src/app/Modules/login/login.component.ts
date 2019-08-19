@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
     loading = false;
     submitted = false;
     returnUrl: string;
+    error: string;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -47,7 +48,6 @@ export class LoginComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
 
-        this.alertService.clear();
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
@@ -61,9 +61,9 @@ export class LoginComponent implements OnInit {
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
-                    this.alertService.error(error);
+                    this.error = "Incorrect username or password";
                     this.loading = false;
-                });
+                })
                 
     }
 }

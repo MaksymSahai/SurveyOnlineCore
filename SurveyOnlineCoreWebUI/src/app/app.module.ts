@@ -13,7 +13,7 @@ import { MenuComponent } from './Modules/menu/menu.component';
 import { HomeComponent } from './Modules/home/home.component';
 import { RegistrationComponent } from './Modules/registration/registration.component';
 import { LoginComponent } from './Modules/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor, ErrorInterceptor } from './Helpers';
 import { AlertComponent } from './Modules/alert/alert.component';
 import { AlertService } from './Services/alert.Service';
@@ -37,8 +37,7 @@ import { AlertService } from './Services/alert.Service';
     ReactiveFormsModule,
     RouterModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule
+    HttpClientModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

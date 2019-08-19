@@ -54,12 +54,12 @@ namespace SurveyOnlineCore.WebApi.Controllers
             try
             {
                 if (!ModelState.IsValid)
-                    return BadRequest();
+                    return BadRequest("Invalid username or password");
 
                 var customer = await _authRepository.Login(customerLogin.CustomerName.ToLower(), customerLogin.CustomerPassword);
 
                 if (customer == null)
-                    return Unauthorized();
+                    return BadRequest("Customer with this name does not present");
 
                 var claims = new[]
                 {

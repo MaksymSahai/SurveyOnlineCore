@@ -16,6 +16,7 @@ export class RegistrationComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
+  error: string;
 
   constructor(
       private formBuilder: FormBuilder,
@@ -44,7 +45,6 @@ export class RegistrationComponent implements OnInit {
       this.submitted = true;
 
       // reset alerts on submit
-      this.alertService.clear();
 
       // stop here if form is invalid
       if (this.registerForm.invalid) {
@@ -60,9 +60,7 @@ export class RegistrationComponent implements OnInit {
                   this.router.navigate(['/login']);
               },
               error => {
-                  if(error.status === 501)
-                    this.router.navigate(['/error']);
-                  this.alertService.error(error);
+                  this.error = "Customer with this name already exists";
                   this.loading = false;
               });
   }

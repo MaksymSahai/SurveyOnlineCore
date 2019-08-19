@@ -1,39 +1,36 @@
-<div>
-    <div class="col-md-6 offset-md-3 mt-5">
-        <div class="card">
-            <div class="card-body">
-                <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" formControlName="CustomerName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.CustomerName.errors }" />
-                        <div *ngIf="submitted && f.CustomerName.errors" class="invalid-feedback">
-                            <div *ngIf="f.CustomerName.errors.required">Username is required</div>
-                        </div>
+
+    <div class="wrapper">
+            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+            <h2>Register</h2>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" formControlName="CustomerName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.CustomerName.errors }" />
+                    <div *ngIf="submitted && f.CustomerName.errors" class="invalid-feedback">
+                        <div *ngIf="f.CustomerName.errors.required">Username is required</div>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" formControlName="CustomerEmail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.CustomerEmail.errors }" />
-                        <div *ngIf="submitted && f.CustomerEmail.errors" class="invalid-feedback">
-                            <div *ngIf="f.CustomerEmail.errors.required">Password is required</div>
-                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" formControlName="CustomerEmail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.CustomerEmail.errors }" />
+                    <div *ngIf="submitted && f.CustomerEmail.errors" class="invalid-feedback">
+                        <div *ngIf="f.CustomerEmail.errors.required">Email is required</div>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" formControlName="CustomerPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.CustomerPassword.errors }" />
-                        <div *ngIf="submitted && f.CustomerPassword.errors" class="invalid-feedback">
-                            <div *ngIf="f.CustomerPassword.errors.required">Password is required</div>
-                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="CustomerPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.CustomerPassword.errors }" />
+                    <div *ngIf="submitted && f.CustomerPassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.CustomerPassword.errors.required">Password is required</div>
+                        <div *ngIf="f.CustomerPassword.errors.minlength">Password must be at least 6 characters</div>
                     </div>
+                </div>
+                <div class="form-group">
                     <button [disabled]="loading" class="btn btn-primary">
                         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                         Register
                     </button>
-                </form>
-            </div>
-        </div>
-    </div>
-        <div class="register-by-social">
-        </div>
+                    <a routerLink="/login" class="btn btn-link">Login</a>
+                </div>
+            </form>
     </div>
