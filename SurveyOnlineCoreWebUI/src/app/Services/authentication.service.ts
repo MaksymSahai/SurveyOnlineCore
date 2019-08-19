@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../Models';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -19,13 +20,19 @@ export class AuthenticationService {
     }
 
     login(CustomerName: string, CustomerPassword: string) {
-        return this.http.post<any>("http://localhost:49976/api/Auth/login", { CustomerName, CustomerPassword })
+        let url = environment.UrlApi+'/Auth/login';
+        return this.http.post<any>(url, { CustomerName, CustomerPassword })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 this.currentUserSubject.next(user);
                 return user;
             }));
+    }
+
+    register(user: User) {
+        let url = environment.UrlApi +'/Auth/register';
+        return this.http.post<any>(url, user);
     }
 
     logout() {

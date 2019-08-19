@@ -14,8 +14,9 @@ import { HomeComponent } from './Modules/home/home.component';
 import { RegistrationComponent } from './Modules/registration/registration.component';
 import { LoginComponent } from './Modules/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthenticationService } from './Services/authentication.service';
 import { JwtInterceptor, ErrorInterceptor } from './Helpers';
+import { AlertComponent } from './Modules/alert/alert.component';
+import { AlertService } from './Services/alert.Service';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { JwtInterceptor, ErrorInterceptor } from './Helpers';
     MenuComponent,
     HomeComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import { JwtInterceptor, ErrorInterceptor } from './Helpers';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+        AlertService
     //AuthGuard,
     //AuthenticationService
   ],

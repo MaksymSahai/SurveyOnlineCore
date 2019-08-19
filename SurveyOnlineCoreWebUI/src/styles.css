@@ -3,6 +3,11 @@ body {
     flex-direction: column;
     width: 100%;
 }
+
+a {
+    cursor: pointer;
+}
+
 a, .fa {
     color: #2fa4e7;
     text-decoration: none;

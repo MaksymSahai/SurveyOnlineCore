@@ -26,7 +26,6 @@ namespace SurveyOnlineCore.Model.Models
         [JsonProperty("CustomerPassword")]
         public string CustomerPassword { get; set; }
 
-        [Required]
         [JsonProperty("CustomerAbilities")]
         public string CustomerAbilities { get; set; }
     }

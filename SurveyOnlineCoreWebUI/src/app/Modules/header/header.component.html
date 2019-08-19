@@ -14,13 +14,17 @@
                                                     <i class="fa fa-user-circle" aria-hidden="true"></i>
                                                     
                                                 </a>
-                                                <ul class="dropdown-menu dropdown-menu-header" role="menu">
-                                                        <li><a>Welcome &nbsp<strong>Name</strong></a></li>
+                                                <ul class="dropdown-menu dropdown-menu-header" role="menu" *ngIf="currentUser">
+                                                        <li><a>Welcome <strong>{{currentUser.CustomerName}}</strong></a></li>
                                                         <li class="divider"></li>
                                                         <li><a href="#" class="nav-itm">Profile</a></li>
                                                         <li><a href="/survey/list" class="nav-itm">My Surveys</a></li>
                                                         <li class="divider"></li>
                                                         <li><a href="/Account/LogOff">Log off</a></li>
+                                                </ul>
+                                                <ul class="dropdown-menu dropdown-menu-header" role="menu" *ngIf="!currentUser">
+                                                        <li><a href="/login" class="nav-itm">Login</a></li>
+                                                        <li><a href="/register">Register</a></li>
                                                 </ul>
                                         </li>
                                 </ul>

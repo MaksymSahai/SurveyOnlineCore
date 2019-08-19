@@ -1,7 +1,0 @@
-{
-    "/api/*": {
-        "target": "http://surveyonlinecore.azurewebsites.net/",
-        "secure": false,
-        "logLevel": "debug"
-    }
-}

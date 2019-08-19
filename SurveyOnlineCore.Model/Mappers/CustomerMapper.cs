@@ -15,7 +15,7 @@ namespace SurveyOnlineCore.Model.Mappers
                 CustomerId = Guid.NewGuid(),
                 CustomerName = customerCreate.CustomerName,
                 CustomerEmail = customerCreate.CustomerEmail,
-                CustomerAbilities = customerCreate.CustomerAbilities
+                CustomerAbilities = customerCreate.CustomerAbilities ?? string.Empty
             };
         }
     }

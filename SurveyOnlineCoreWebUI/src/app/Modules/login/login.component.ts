@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
+import { AlertService } from 'src/app/Services/alert.Service';
 
 
 @Component({ 
@@ -15,13 +16,13 @@ export class LoginComponent implements OnInit {
     loading = false;
     submitted = false;
     returnUrl: string;
-    error = '';
 
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private alertService: AlertService
     ) { 
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) { 
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit {
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
     }
 
     // convenience getter for easy access to form fields
@@ -45,6 +47,7 @@ export class LoginComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
 
+        this.alertService.clear();
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
@@ -56,11 +59,9 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this.router.navigate([this.returnUrl]);
-                    this.loading = false;
                 },
                 error => {
-                    this.error = "Username or passwors are incorrect";
-                    event.preventDefault();
+                    this.alertService.error(error);
                     this.loading = false;
                 });
                 
