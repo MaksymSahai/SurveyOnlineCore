@@ -21,15 +21,16 @@ namespace SurveyOnlineCore.WebApi.Controllers
             _surveyRepository = surveyRepository;
         }
 
-        [HttpGet("{customerId}/survey/{surveyId}")]
+        [HttpGet("survey/{surveyId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         [ProducesResponseType(401)]
         [ProducesResponseType(500)]
-        public ActionResult<SurveyOut> GetSyrvey(Guid customerId, Guid surveyId)
+        public ActionResult<SurveyOut> GetSyrvey(Guid surveyId)
         {
             try
             {
+                var customerId = GetCurrentCustomerId();
                 surveyId = new Guid(surveyId.ToString().Trim());
 
                 if (surveyId.ToString() == string.Empty)
@@ -49,15 +50,16 @@ namespace SurveyOnlineCore.WebApi.Controllers
             }
         }
 
-        [HttpGet("{customerId}/survey/{surveyId}/stat")]
+        [HttpGet("survey/{surveyId}/stat")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         [ProducesResponseType(401)]
         [ProducesResponseType(500)]
-        public ActionResult<SurveyStatOut> GetSyrveyStatistic(Guid customerId, Guid surveyId)
+        public ActionResult<SurveyStatOut> GetSyrveyStatistic( Guid surveyId)
         {
             try
             {
+                var customerId = GetCurrentCustomerId();
                 surveyId = new Guid(surveyId.ToString().Trim());
 
                 if (surveyId.ToString() == string.Empty)
@@ -77,22 +79,20 @@ namespace SurveyOnlineCore.WebApi.Controllers
             }
         }
 
-        [HttpGet("{customerId}/list")]
+        [HttpGet("list")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         [ProducesResponseType(401)]
         [ProducesResponseType(500)]
-        public ActionResult<IEnumerable<SurveyLitsItemOut>> GetSyrveys(Guid customerId)
+        public ActionResult<IEnumerable<SurveyLitsItemOut>> GetSyrveys()
         {
             try
             {
-                Guid customerId2 = new Guid(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-                if (customerId2 == null)
-                    return BadRequest();
-
+                var customerId = GetCurrentCustomerId();
                 var surveys = _surveyRepository.GetSurveysByUserId(customerId).ToList();
+
                 if (surveys == null || !surveys.Any())
-                    return NotFound();
+                    return null;
 
                 var syrveysOut = new List<SurveyLitsItemOut>();
                 foreach (var syrvey in surveys)
@@ -110,7 +110,7 @@ namespace SurveyOnlineCore.WebApi.Controllers
                 }
                 return syrveysOut;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return StatusCode(500);
             }
@@ -145,9 +145,6 @@ namespace SurveyOnlineCore.WebApi.Controllers
         [ProducesResponseType(500)]
         public ActionResult ConductSurvey([FromBody]ConductSurvey conductSurvey)
         {
-            //if (!ModelState.IsValid)
-            //    return BadRequest();
-
             try
             {
                 var questionaries = SurveyMapper.MapQuestionnaires(conductSurvey);
@@ -158,6 +155,11 @@ namespace SurveyOnlineCore.WebApi.Controllers
             {
                 return StatusCode(500);
             }
+        }
+
+        private Guid GetCurrentCustomerId()
+        {
+            return Guid.Parse(HttpContext.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value);
         }
     }
 }
