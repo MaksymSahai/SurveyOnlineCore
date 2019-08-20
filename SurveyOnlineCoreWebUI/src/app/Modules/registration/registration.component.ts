@@ -3,7 +3,6 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AlertService } from 'src/app/Services/alert.Service';
 import { MustMatch } from 'src/app/Helpers/MustMatch';
 
 @Component({
@@ -23,7 +22,6 @@ export class RegistrationComponent implements OnInit {
       private formBuilder: FormBuilder,
       private router: Router,
       private authenticationService: AuthenticationService,
-      private alertService: AlertService
   ) {
       // redirect to home if already logged in
       if (this.authenticationService.currentUserValue) {
@@ -61,7 +59,6 @@ export class RegistrationComponent implements OnInit {
           .pipe(first())
           .subscribe(
               data => {
-                  this.alertService.success('Registration successful', true);
                   this.router.navigate(['/login']);
               },
               error => {

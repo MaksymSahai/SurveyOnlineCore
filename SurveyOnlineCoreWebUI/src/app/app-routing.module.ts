@@ -5,13 +5,23 @@ import { HomeComponent } from './Modules/home/home.component';
 import { RegistrationComponent } from './Modules/registration/registration.component';
 import { LoginComponent } from './Modules/login/login.component';
 import { AuthGuard } from './Helpers';
+import { AboutusComponent } from './Modules/aboutus/aboutus.component';
+import { HowitComponent } from './Modules/howit/howit.component';
+import { FaqComponent } from './Modules/faq/faq.component';
+import { FeedbackComponent } from './Modules/feedback/feedback.component';
+import { SurveylistComponent } from './Modules/surveylist/surveylist.component';
 
 
 const routes: Routes = [
   { path: '' , component: HomeComponent},
   { path: 'register' , component: RegistrationComponent},
   { path: 'login' , component: LoginComponent},
+  { path: 'aboutus' , component: AboutusComponent},
+  { path: 'howit' , component: HowitComponent},
+  { path: 'faq' , component: FaqComponent},
+  { path: 'feedback' , component: FeedbackComponent},
   { path: 'value' , component: ValueListComponent, canActivate: [AuthGuard]},
+  { path: 'surveys' , component: SurveylistComponent, canActivate: [AuthGuard]},
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

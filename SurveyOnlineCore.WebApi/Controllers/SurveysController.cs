@@ -99,7 +99,6 @@ namespace SurveyOnlineCore.WebApi.Controllers
                 {
                     var syrveyOut = new SurveyLitsItemOut
                     {
-                        CustomerId = syrvey.CustomerId,
                         SurveyDescription = syrvey.SurveyDescription,
                         SurveyName = syrvey.SurveyName,
                         SurveysId = syrvey.SurveysId,

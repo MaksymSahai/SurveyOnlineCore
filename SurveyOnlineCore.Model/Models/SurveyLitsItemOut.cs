@@ -22,8 +22,5 @@ namespace SurveyOnlineCore.Model.Models
 
         [JsonProperty("SurveyUrl")]
         public string SurveyUrl { get; set; }
-
-        [JsonProperty("CustomerId")]
-        public Guid CustomerId { get; set; }
     }
 }

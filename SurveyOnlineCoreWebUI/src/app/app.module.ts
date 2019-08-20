@@ -15,8 +15,13 @@ import { RegistrationComponent } from './Modules/registration/registration.compo
 import { LoginComponent } from './Modules/login/login.component';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor, ErrorInterceptor } from './Helpers';
-import { AlertComponent } from './Modules/alert/alert.component';
-import { AlertService } from './Services/alert.Service';
+import { AboutusComponent } from './Modules/aboutus/aboutus.component';
+import { HowitComponent } from './Modules/howit/howit.component';
+import { FaqComponent } from './Modules/faq/faq.component';
+import { FeedbackComponent } from './Modules/feedback/feedback.component';
+import { SurveylistComponent } from './Modules/surveylist/surveylist.component';
+import { AuthenticationService } from './Services/authentication.service';
+import { SurveyService } from './Services/survey.Service';
 
 
 @NgModule({
@@ -30,7 +35,11 @@ import { AlertService } from './Services/alert.Service';
     HomeComponent,
     RegistrationComponent,
     LoginComponent,
-    AlertComponent
+    AboutusComponent,
+    HowitComponent,
+    FaqComponent,
+    FeedbackComponent,
+    SurveylistComponent
   ],
   imports: [
     BrowserModule,
@@ -41,10 +50,10 @@ import { AlertService } from './Services/alert.Service';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-        AlertService
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     //AuthGuard,
-    //AuthenticationService
+    AuthenticationService,
+    SurveyService
   ],
   bootstrap: [AppComponent]
 })
