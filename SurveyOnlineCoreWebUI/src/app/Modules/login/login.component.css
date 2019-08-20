@@ -1,0 +1,13 @@
+.login-page {
+    margin-left: 10%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 50%;
+    font-size: 15px;
+}
+.register-on-login-page {
+    margin-left: 20px;
+}
+.register-on-login-page a {
+    margin-left: 10px;
+}

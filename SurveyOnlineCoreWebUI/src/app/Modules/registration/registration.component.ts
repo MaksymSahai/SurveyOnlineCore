@@ -1,9 +1,10 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AlertService } from 'src/app/Services/alert.Service';
+import { MustMatch } from 'src/app/Helpers/MustMatch';
 
 @Component({
   selector: 'app-registration',
@@ -34,8 +35,12 @@ export class RegistrationComponent implements OnInit {
       this.registerForm = this.formBuilder.group({
         CustomerName: ['', Validators.required],
           CustomerEmail: ['', [Validators.required, Validators.email]],
-          CustomerPassword: ['', [Validators.required, Validators.minLength(6)]]
-      });
+          CustomerPassword: ['', [Validators.required, Validators.minLength(6)]],
+          confirmPassword: ['', Validators.required],
+      },{
+        validator: MustMatch('CustomerPassword', 'confirmPassword')
+    }
+      );
   }
 
   // convenience getter for easy access to form fields
@@ -64,4 +69,9 @@ export class RegistrationComponent implements OnInit {
                   this.loading = false;
               });
   }
+
+  onReset() {
+    this.submitted = false;
+    this.registerForm.reset();
+}
 }
