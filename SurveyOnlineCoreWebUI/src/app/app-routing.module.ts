@@ -10,6 +10,7 @@ import { HowitComponent } from './Modules/howit/howit.component';
 import { FaqComponent } from './Modules/faq/faq.component';
 import { FeedbackComponent } from './Modules/feedback/feedback.component';
 import { SurveylistComponent } from './Modules/surveylist/surveylist.component';
+import { SurveydetailComponent } from './Modules/surveydetail/surveydetail.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'feedback' , component: FeedbackComponent},
   { path: 'value' , component: ValueListComponent, canActivate: [AuthGuard]},
   { path: 'surveys' , component: SurveylistComponent, canActivate: [AuthGuard]},
+  { path: 'survey/detail/:id' , component: SurveydetailComponent, canActivate: [AuthGuard]},
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

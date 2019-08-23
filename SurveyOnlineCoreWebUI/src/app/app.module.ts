@@ -22,6 +22,7 @@ import { FeedbackComponent } from './Modules/feedback/feedback.component';
 import { SurveylistComponent } from './Modules/surveylist/surveylist.component';
 import { AuthenticationService } from './Services/authentication.service';
 import { SurveyService } from './Services/survey.Service';
+import { SurveydetailComponent } from './Modules/surveydetail/surveydetail.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { SurveyService } from './Services/survey.Service';
     HowitComponent,
     FaqComponent,
     FeedbackComponent,
-    SurveylistComponent
+    SurveylistComponent,
+    SurveydetailComponent
   ],
   imports: [
     BrowserModule,

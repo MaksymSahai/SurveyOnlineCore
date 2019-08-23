@@ -15,4 +15,9 @@ export class SurveyService {
         let url = environment.UrlApi +'/surveys/list';
         return this.http.get<any>(url).pipe(retry(1));
     }
+
+    getSurveyById(id: string): Observable<any>{
+        let url = environment.UrlApi +'/surveys/survey/'+id;
+        return this.http.get<any>(url).pipe(retry(1));
+    }
 }

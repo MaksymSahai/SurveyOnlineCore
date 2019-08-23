@@ -2,6 +2,7 @@
 using SurveyOnlineCore.Model.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SurveyOnlineCore.Model.Mappers
@@ -37,7 +38,7 @@ namespace SurveyOnlineCore.Model.Mappers
                 };
                 questionsOutList.Add(questionOut);
             }
-            return questionsOutList;
+            return questionsOutList.OrderByDescending(q => q.QuestionId.ToString()).ToList();
         }
 
         private static ICollection<AnswerOut> MapAnswerVariants(ICollection<AnswerVariants> answerVariants)

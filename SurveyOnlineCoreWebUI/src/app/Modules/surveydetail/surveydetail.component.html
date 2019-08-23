@@ -1,0 +1,19 @@
+<div class="survey-details-page">
+    <div class="wrapper">
+        <div class="survey-details-header">
+                <h2>{{SurveyDetails.SurveyName}}</h2>
+                <p>{{SurveyDetails.SurveyDescription}}</p>
+                <p>Survey Status:
+                        <span><i class="fa fa-check" aria-hidden="true" *ngIf="SurveyDetails.SurveyStatus"></i></span>
+                        <span><i class="fa fa-times" aria-hidden="true" *ngIf="!SurveyDetails.SurveyStatus"></i></span>
+                </p>
+                <p>Question count: <span class="badge">{{SurveyDetails.questions.length}}</span></p>
+                <ul *ngFor="let question of SurveyDetails.questions">
+                    <li class="question-list">{{question.QuestionName}}</li>
+                    <ul class="answer-list" *ngFor="let answer of question.answerVariants">
+                        <li>{{answer.AnswerVariantName}}</li>
+                    </ul>
+                </ul>
+        </div>
+    </div>
+</div>

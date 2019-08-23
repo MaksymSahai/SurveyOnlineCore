@@ -7,7 +7,7 @@ import { SurveyService } from 'src/app/Services/survey.Service';
   styleUrls: ['./surveylist.component.css']
 })
 export class SurveylistComponent implements OnInit {
-  SurveyList: any = []
+  SurveyList: any = [];
   constructor(private surveyService: SurveyService) { }
 
   ngOnInit() {
