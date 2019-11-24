@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using SurveyOnlineCore.Data.Interfaces;
 using SurveyOnlineCore.Model.Models;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SurveyOnlineCore.WebApi.Controllers
 {
@@ -41,11 +38,11 @@ namespace SurveyOnlineCore.WebApi.Controllers
                     return BadRequest("Customer with this name already exists");
 
                 var customer = Model.Mappers.CustomerMapper.Map(customerCreate);
-                var createdCustomer = await _authRepository.Register(customer, customerCreate.CustomerPassword);
+                await _authRepository.Register(customer, customerCreate.CustomerPassword);
 
                 return StatusCode(201);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
@@ -85,7 +82,7 @@ namespace SurveyOnlineCore.WebApi.Controllers
 
                 return Ok(new { token = tokenHandler.WriteToken(token) });
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500);
             }

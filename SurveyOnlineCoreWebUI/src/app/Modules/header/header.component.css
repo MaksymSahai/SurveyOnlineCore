@@ -1,0 +1,55 @@
+.top-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.header-phone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.fa-phone {
+    font-size: 15px;
+    margin-right: 5px;
+}
+.header-phone-text {
+    padding-top: 10px;
+    width: auto;
+}
+
+.top-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 10px;
+}
+.top-nav-item {
+    margin-left: 15px;
+    padding-right: 15px;
+    border-right: 1px solid #e6e6e6;
+}
+.top-nav-item:last-child {
+    border-right: none;
+}
+.fa-user-circle {
+    font-size: 20px;
+}
+.fa-caret-down {
+    font-size: 15px;
+}
+.dropdown-menu-header {
+    position: absolute;
+    top: 100%;
+    right: 0px;
+    visibility: hidden;
+}
+.dropdown a{
+    text-decoration: none;
+    cursor: pointer;
+}
+.dropdown:hover .dropdown-menu {
+    visibility: visible;
+}

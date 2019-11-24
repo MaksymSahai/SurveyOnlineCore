@@ -1,0 +1,17 @@
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+a {
+    color: #2fa4e7;
+    text-decoration: none;
+}
+.wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    flex: auto;
+}
+ul, ol {
+    list-style-type: none;
+}

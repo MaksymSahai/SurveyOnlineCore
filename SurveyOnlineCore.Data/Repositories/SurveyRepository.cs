@@ -4,8 +4,6 @@ using SurveyOnlineCore.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SurveyOnlineCore.Data.Repositories
 {
@@ -38,7 +36,7 @@ namespace SurveyOnlineCore.Data.Repositories
         public IEnumerable<Surveys> GetSurveysByUserId(Guid customerId)
         {
             return _surveyOnlineContext.Customers.Where(c => c.CustomerId == customerId)
-                .Include(Customers => Customers.Surveys).FirstOrDefault().Surveys.ToList();
+                .Include(customers => customers.Surveys).FirstOrDefault().Surveys.ToList();
         }
 
         /// <summary>
@@ -52,7 +50,7 @@ namespace SurveyOnlineCore.Data.Repositories
             var survey = _surveyOnlineContext.Customers.Where(c => c.CustomerId == custonmerId).Include(c => c.Surveys)
                 .Where(s => s.Surveys.Any(su => su.SurveyUrl == surveyUrl));
 
-            if (survey.Any() || survey != null)
+            if (survey != null || survey.Any())
                 return false;
             return true;
         }
@@ -81,7 +79,7 @@ namespace SurveyOnlineCore.Data.Repositories
                         _surveyOnlineContext.SaveChanges();
                         transaction.Commit();
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         transaction.Rollback();
                         throw;
