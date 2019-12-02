@@ -12,21 +12,21 @@ namespace SurveyOnlineCore.Model.Models
     {
         [Required]
         [MaxLength(250)]
-        [JsonProperty("CustomerName")]
+        [JsonProperty("customerName")]
         public string CustomerName { get; set; }
 
         [Required]
         [EmailAddress]
         [MaxLength(250)]
-        [JsonProperty("CustomerEmail")]
+        [JsonProperty("customerEmail")]
         public string CustomerEmail { get; set; }
 
         [Required]
         [StringLength(250, MinimumLength = 6, ErrorMessage = "You mast specify password more then 6 characters")]
-        [JsonProperty("CustomerPassword")]
+        [JsonProperty("customerPassword")]
         public string CustomerPassword { get; set; }
 
-        [JsonProperty("CustomerAbilities")]
+        [JsonProperty("customerAbilities")]
         public string CustomerAbilities { get; set; }
     }
 }

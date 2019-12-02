@@ -8,19 +8,19 @@ namespace SurveyOnlineCore.Model.Models
     [JsonObject]
     public class SurveyLitsItemOut
     {
-        [JsonProperty("SurveysId")]
+        [JsonProperty("surveysId")]
         public Guid SurveysId { get; set; }
 
-        [JsonProperty("SurveyName")]
+        [JsonProperty("surveyName")]
         public string SurveyName { get; set; }
 
-        [JsonProperty("SurveyDescription")]
+        [JsonProperty("surveyDescription")]
         public string SurveyDescription { get; set; }
 
-        [JsonProperty("SurveyStatus")]
+        [JsonProperty("surveyStatus")]
         public bool SurveyStatus { get; set; }
 
-        [JsonProperty("SurveyUrl")]
+        [JsonProperty("surveyUrl")]
         public string SurveyUrl { get; set; }
     }
 }

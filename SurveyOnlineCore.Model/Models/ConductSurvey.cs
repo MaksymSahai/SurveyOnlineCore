@@ -8,7 +8,7 @@ namespace SurveyOnlineCore.Model.Models
     [JsonObject]
     public class ConductSurvey
     {
-        [JsonProperty("SurveysId")]
+        [JsonProperty("surveysId")]
         public Guid SurveysId { get; set; }
 
         public ICollection<ConductQuestion> Questions { get; set; }
@@ -17,7 +17,7 @@ namespace SurveyOnlineCore.Model.Models
     [JsonObject]
     public class ConductQuestion
     {
-        [JsonProperty("QuestionId")]
+        [JsonProperty("questionId")]
         public Guid QuestionId { get; set; }
 
         public ICollection<ConductAnswer> AnswerVariants { get; set; }
@@ -26,7 +26,7 @@ namespace SurveyOnlineCore.Model.Models
     [JsonObject]
     public class ConductAnswer
     {
-        [JsonProperty("AnswerVariantId")]
+        [JsonProperty("answerVariantId")]
         public Guid AnswerVariantId { get; set; }
     }
 }

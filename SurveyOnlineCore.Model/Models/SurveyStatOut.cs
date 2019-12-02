@@ -8,22 +8,22 @@ namespace SurveyOnlineCore.Model.Models
     [JsonObject]
     public class SurveyStatOut
     {
-        [JsonProperty("SurveysId")]
+        [JsonProperty("surveysId")]
         public Guid SurveysId { get; set; }
 
-        [JsonProperty("SurveyName")]
+        [JsonProperty("surveyName")]
         public string SurveyName { get; set; }
 
-        [JsonProperty("SurveyDescription")]
+        [JsonProperty("surveyDescription")]
         public string SurveyDescription { get; set; }
 
-        [JsonProperty("SurveyStatus")]
+        [JsonProperty("surveyStatus")]
         public bool SurveyStatus { get; set; }
 
-        [JsonProperty("SurveyUrl")]
+        [JsonProperty("surveyUrl")]
         public string SurveyUrl { get; set; }
 
-        [JsonProperty("QuestionnairesCount")]
+        [JsonProperty("questionnairesCount")]
         public int QuestionnairesCount { get; set; }
 
         public ICollection<QuestionStatOut> Questions { get; set; }
@@ -32,13 +32,13 @@ namespace SurveyOnlineCore.Model.Models
     [JsonObject]
     public class QuestionStatOut
     {
-        [JsonProperty("QuestionId")]
+        [JsonProperty("questionId")]
         public Guid QuestionId { get; set; }
 
-        [JsonProperty("QuestionName")]
+        [JsonProperty("questionName")]
         public string QuestionName { get; set; }
 
-        [JsonProperty("QuestionTypeId")]
+        [JsonProperty("questionTypeId")]
         public Guid QuestionTypeId { get; set; }
 
         public ICollection<AnswerStatOut> AnswerVariants { get; set; }
@@ -47,13 +47,13 @@ namespace SurveyOnlineCore.Model.Models
     [JsonObject]
     public class AnswerStatOut
     {
-        [JsonProperty("AnswerVariantId")]
+        [JsonProperty("answerVariantId")]
         public Guid AnswerVariantId { get; set; }
 
-        [JsonProperty("AnswerVariantName")]
+        [JsonProperty("answerVariantName")]
         public string AnswerVariantName { get; set; }
 
-        [JsonProperty("QuestionnairesCount")]
+        [JsonProperty("questionnairesCount")]
         public int QuestionnairesCount { get; set; }
     }
 }

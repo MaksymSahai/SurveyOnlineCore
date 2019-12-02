@@ -10,11 +10,11 @@ namespace SurveyOnlineCore.Model.Models
     public class CustomerLogin
     {
         [Required]
-        [JsonProperty("CustomerName")]
+        [JsonProperty("customerName")]
         public string CustomerName { get; set; }
 
         [Required]
-        [JsonProperty("CustomerPassword")]
+        [JsonProperty("customerPassword")]
         public string CustomerPassword { get; set; }
     }
 }

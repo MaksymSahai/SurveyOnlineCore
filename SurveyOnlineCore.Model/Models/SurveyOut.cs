@@ -8,19 +8,19 @@ namespace SurveyOnlineCore.Model.Models
     [JsonObject]
     public class SurveyOut
     {
-        [JsonProperty("SurveysId")]
+        [JsonProperty("surveysId")]
         public Guid SurveysId { get; set; }
 
-        [JsonProperty("SurveyName")]
+        [JsonProperty("surveyName")]
         public string SurveyName { get; set; }
 
-        [JsonProperty("SurveyDescription")]
+        [JsonProperty("surveyDescription")]
         public string SurveyDescription { get; set; }
 
-        [JsonProperty("SurveyStatus")]
+        [JsonProperty("surveyStatus")]
         public bool SurveyStatus { get; set; }
 
-        [JsonProperty("SurveyUrl")]
+        [JsonProperty("surveyUrl")]
         public string SurveyUrl { get; set; }
 
         public ICollection<QuestionOut> Questions { get; set; }
@@ -29,13 +29,13 @@ namespace SurveyOnlineCore.Model.Models
     [JsonObject]
     public class QuestionOut
     {
-        [JsonProperty("QuestionId")]
+        [JsonProperty("questionId")]
         public Guid QuestionId { get; set; }
 
-        [JsonProperty("QuestionName")]
+        [JsonProperty("questionName")]
         public string QuestionName { get; set; }
 
-        [JsonProperty("QuestionTypeId")]
+        [JsonProperty("questionTypeId")]
         public Guid QuestionTypeId { get; set; }
 
         public ICollection<AnswerOut> AnswerVariants { get; set; }
@@ -44,10 +44,10 @@ namespace SurveyOnlineCore.Model.Models
     [JsonObject]
     public class AnswerOut
     {
-        [JsonProperty("AnswerVariantId")]
+        [JsonProperty("answerVariantId")]
         public Guid AnswerVariantId { get; set; }
 
-        [JsonProperty("AnswerVariantName")]
+        [JsonProperty("answerVariantName")]
         public string AnswerVariantName { get; set; }
     }
 }

@@ -10,28 +10,28 @@ namespace SurveyOnlineCore.Model.Models
     public class CreateSurvey
     {
         [Required]
-        [JsonProperty("CustomerId")]
+        [JsonProperty("customerId")]
         public string CustomerId { get; set; }
 
         [Required]
         [MaxLength(250)]
-        [JsonProperty("SurveyName")]
+        [JsonProperty("surveyName")]
         public string SurveyName { get; set; }
 
         [Required]
         [MaxLength(500)]
-        [JsonProperty("SurveyDescription")]
+        [JsonProperty("surveyDescription")]
         public string SurveyDescription { get; set; }
 
-        [JsonProperty("SurveyStatus")]
+        [JsonProperty("surveyStatus")]
         public bool SurveyStatus { get; set; }
 
         [Required]
         [MaxLength(100)]
-        [JsonProperty("SurveyUrl")]
+        [JsonProperty("surveyUrl")]
         public string SurveyUrl { get; set; }
 
-        [JsonProperty("Questions")]
+        [JsonProperty("questions")]
         public IList<QuestionOut> Questions { get; set; }
     }
 
@@ -40,18 +40,18 @@ namespace SurveyOnlineCore.Model.Models
     {
         [Required]
         [MaxLength(250)]
-        [JsonProperty("QuestionName")]
+        [JsonProperty("questionName")]
         public string QuestionName { get; set; }
 
         [Required]
         [MaxLength(250)]
-        [JsonProperty("SelectedAnswer")]
+        [JsonProperty("selectedAnswer")]
         public string SelectedAnswer { get; set; }
 
-        [JsonProperty("QuestionTypeId")]
+        [JsonProperty("questionTypeId")]
         public Guid QuestionTypeId { get; set; }
 
-        [JsonProperty("AnswerVariants")]
+        [JsonProperty("answerVariants")]
         public IList<AnswerOut> AnswerVariants { get; set; }
     }
 
@@ -60,7 +60,7 @@ namespace SurveyOnlineCore.Model.Models
     {
         [Required]
         [MaxLength(250)]
-        [JsonProperty("AnswerVariantName")]
+        [JsonProperty("answerVariantName")]
         public string AnswerVariantName { get; set; }
     }
 }
